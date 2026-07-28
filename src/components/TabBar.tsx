@@ -44,8 +44,24 @@ export function TabBar() {
       {tabs.map((tab) => {
         const isActive =
           tab.id === "work" ? pathname === "/work" : pathname === "/" && activeSection === tab.id;
+        const className = `tab${isActive ? " active" : ""}`;
+
+        // When already on "/", use a plain in-page anchor instead of next/link.
+        // Routing a hash href through the client router while the pathname is
+        // unchanged can leave a stale hash in place and append the new one
+        // instead of replacing it (e.g. "/#contact#contact"). A native anchor
+        // just does a normal same-document fragment jump, which can't stack.
+        if (tab.id !== "work" && pathname === "/") {
+          return (
+            <a key={tab.id} href={`#${tab.id}`} className={className}>
+              <span className="dot" />
+              {tab.label}
+            </a>
+          );
+        }
+
         return (
-          <Link key={tab.id} href={tab.href} className={`tab${isActive ? " active" : ""}`}>
+          <Link key={tab.id} href={tab.href} className={className}>
             <span className="dot" />
             {tab.label}
           </Link>
