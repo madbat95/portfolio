@@ -8,7 +8,7 @@ export const profile = {
 };
 
 export const heroLine =
-  "Full-stack dev and tech lead, about 5 years in now. I end up touching everything on a project: frontend, backend, the infra nobody wants to deal with. These days that includes leaning on Claude and Copilot to move faster too.";
+  "Full-stack dev and tech lead, about 5 years in now. I end up touching everything on a project: frontend, backend, the infra nobody wants to deal with. Lately that also means leaning on Claude and Copilot to move faster.";
 
 export const aboutParagraphs = [
   "I've spent the last 5+ years building enterprise apps end to end. That means sitting in on requirements calls with clients, figuring out the architecture, then actually building it. I've been the engineer and the product owner often enough that I don't really separate the two anymore.",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     demoUrl: "https://chef-claude-ecru-one.vercel.app",
     noteSummary: "Why this is more than a recipe app",
     noteBody:
-      "It's really just a small case study in defending against prompt injection: validating input on the client, keeping what the user types away from the actual system instructions, and having the model sort real ingredients from junk before it's allowed to cook anything up.",
+      "It's really just a small case study in defending against prompt injection. I validate input on the client, keep what the user types separate from the actual system instructions, and let the model itself sort real ingredients from junk before it's allowed to cook anything up.",
   },
   {
     slug: "whiteboard",
@@ -128,7 +128,7 @@ export const experience: ExperienceEntry[] = [
     role: "Tech Lead — Full-Stack Developer & Product Owner",
     company: "Shispare",
     description:
-      "Running point on Nebula Academy, an AI-powered LMS. I handle the client side as Product Owner (discovery, sprint planning, all of it) and build both ends of the stack: the Next.js/React frontend and the NestJS + TypeORM + Postgres backend, plus the role-based dashboards, Stripe-backed exam flow, and the Google Meet/Teams integrations.",
+      "Running point on Nebula Academy, an AI-powered LMS. I handle the client side as Product Owner (discovery, sprint planning, all of it) and build both ends of the stack: the Next.js/React frontend and the NestJS + TypeORM + Postgres backend. That also covers the role-based dashboards, the Stripe-backed exam flow, and the Google Meet/Teams integrations.",
   },
   {
     hash: "#3",
@@ -136,7 +136,7 @@ export const experience: ExperienceEntry[] = [
     role: "Software Engineer",
     company: "BitByteCyber",
     description:
-      "Two and a half years building Angular apps for production clients: multi-step forms that had to handle a lot of edge cases, real-time chat over WebSockets, permission systems with CASL, payment integrations wired straight into the frontend, plus the odd Chrome extension and calendar dashboard along the way.",
+      "Two and a half years building Angular apps for production clients. Multi-step forms that had to handle a lot of edge cases, real-time chat over WebSockets, permission systems with CASL, payment integrations wired straight into the frontend, and the odd Chrome extension or calendar dashboard along the way.",
   },
   {
     hash: "#2",

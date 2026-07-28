@@ -75,7 +75,6 @@ export default function Home() {
           {experience.map((entry) => (
             <div className="commit" key={entry.hash}>
               <span className="commit-date">{entry.dateRange}</span>
-              <span className="commit-hash">{entry.hash}</span>
               <h3>{entry.role}</h3>
               <div className="role">{entry.company}</div>
               <p className="desc">{entry.description}</p>

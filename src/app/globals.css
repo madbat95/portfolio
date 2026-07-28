@@ -470,11 +470,6 @@ details.subnote p {
   background: var(--bg);
   border: 2px solid var(--accent);
 }
-.commit-hash {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--text-faint);
-}
 .commit-date {
   font-family: var(--font-mono);
   font-size: 0.78rem;
