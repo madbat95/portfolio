@@ -81,7 +81,7 @@ export const projects: Project[] = [
       "A full-stack geospatial search app built as a TypeScript monorepo: NestJS on the backend, Next.js and Leaflet on the frontend. Search results come from the Nominatim and Overpass APIs through a cached proxy layer, which kills the CORS issues and cuts down on redundant calls to services that rate-limit hard.",
     stack: ["TypeScript", "NestJS", "Next.js", "Leaflet", "n8n"],
     codeUrl: "https://github.com/madbat95/business-finder",
-    demoUrl: "https://business-finder-backend.vercel.app",
+    demoUrl: "https://business-finder-frontend.vercel.app",
     noteSummary: "The part that turned it into a lead-gen pipeline",
     noteBody:
       "I extended it past plain search: results get enriched with contact emails and business descriptions, there's a CSV export endpoint, and an n8n workflow handles automated cold outreach on top, with lead deduplication, send throttling, and CAN-SPAM/GDPR-compliant opt-outs built in.",
