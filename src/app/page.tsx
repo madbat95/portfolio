@@ -39,7 +39,7 @@ export default function Home() {
         <div className="hero-links">
           <a className="btn primary" href={profile.resumeUrl}>
             <Download size={14} strokeWidth={2.25} aria-hidden="true" />
-            résumé
+            Résumé
           </a>
           <a className="btn" href={profile.github} target="_blank" rel="noopener">
             GitHub ↗

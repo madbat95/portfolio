@@ -12,6 +12,8 @@ const tabs = [
   { label: "contact.sh", href: "/#contact", id: "contact" },
 ];
 
+const sectionIds = ["hero", "about", "skills", "experience", "contact"];
+
 export function TabBar() {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -19,9 +21,8 @@ export function TabBar() {
   useEffect(() => {
     if (pathname !== "/") return;
 
-    const sections = tabs
-      .filter((t) => t.id !== "work")
-      .map((t) => document.getElementById(t.id))
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
     if (!("IntersectionObserver" in window) || sections.length === 0) return;
@@ -29,7 +30,9 @@ export function TabBar() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id === "hero" ? null : entry.target.id);
+          }
         });
       },
       { rootMargin: "-40% 0px -55% 0px" }
@@ -38,15 +41,26 @@ export function TabBar() {
     return () => observer.disconnect();
   }, [pathname]);
 
-  const scrollToTop = (e: MouseEvent) => {
+  // Same-page section jumps are handled entirely in JS (scrollIntoView +
+  // history.replaceState) instead of letting the browser or next/link
+  // manage the hash. Letting real anchor navigation set the hash was
+  // occasionally leaving stale fragments in place or appending onto them
+  // (e.g. "/#skills#experience#experience") rather than replacing cleanly.
+  const jumpTo = (id: string | null) => (e: MouseEvent) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    history.replaceState(null, "", id ? `#${id}` : pathname);
+    setActiveSection(id);
   };
 
   return (
     <nav className="tabbar" aria-label="Section navigation">
       {pathname === "/" ? (
-        <a href="#" onClick={scrollToTop} className="tab-brand">
+        <a href="#" onClick={jumpTo(null)} className="tab-brand">
           ~/hammad-ahmed
         </a>
       ) : (
@@ -59,14 +73,9 @@ export function TabBar() {
           tab.id === "work" ? pathname === "/work" : pathname === "/" && activeSection === tab.id;
         const className = `tab${isActive ? " active" : ""}`;
 
-        // When already on "/", use a plain in-page anchor instead of next/link.
-        // Routing a hash href through the client router while the pathname is
-        // unchanged can leave a stale hash in place and append the new one
-        // instead of replacing it (e.g. "/#contact#contact"). A native anchor
-        // just does a normal same-document fragment jump, which can't stack.
         if (tab.id !== "work" && pathname === "/") {
           return (
-            <a key={tab.id} href={`#${tab.id}`} className={className}>
+            <a key={tab.id} href={`#${tab.id}`} onClick={jumpTo(tab.id)} className={className}>
               <span className="dot" />
               {tab.label}
             </a>
