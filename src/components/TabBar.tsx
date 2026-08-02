@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 const tabs = [
   { label: "about.tsx", href: "/#about", id: "about" },
@@ -38,9 +38,22 @@ export function TabBar() {
     return () => observer.disconnect();
   }, [pathname]);
 
+  const scrollToTop = (e: MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <nav className="tabbar" aria-label="Section navigation">
-      <div className="tab-brand">~/hammad-ahmed</div>
+      {pathname === "/" ? (
+        <a href="#" onClick={scrollToTop} className="tab-brand">
+          ~/hammad-ahmed
+        </a>
+      ) : (
+        <Link href="/" className="tab-brand">
+          ~/hammad-ahmed
+        </Link>
+      )}
       {tabs.map((tab) => {
         const isActive =
           tab.id === "work" ? pathname === "/work" : pathname === "/" && activeSection === tab.id;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Download } from "lucide-react";
 import { aboutParagraphs, experience, heroLine, profile, skillGroups } from "@/lib/content";
 
 export default function Home() {
@@ -27,11 +28,18 @@ export default function Home() {
             <div className="output" style={{ color: "var(--text-dim)", fontSize: "0.9rem" }}>
               chef-claude/&nbsp;&nbsp;&nbsp;whiteboard/
             </div>
+            <div className="prompt-line">
+              <span className="sigil">➜</span> open work/
+            </div>
+            <div className="output" style={{ fontSize: "0.9rem" }}>
+              <Link href="/work">→ click here to see my work</Link>
+            </div>
           </div>
         </div>
         <div className="hero-links">
           <a className="btn primary" href={profile.resumeUrl}>
-            Download résumé
+            <Download size={14} strokeWidth={2.25} aria-hidden="true" />
+            résumé
           </a>
           <a className="btn" href={profile.github} target="_blank" rel="noopener">
             GitHub ↗
