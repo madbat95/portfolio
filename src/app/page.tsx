@@ -96,6 +96,9 @@ export default function Home() {
         <h2>contact.sh</h2>
         <div className="contact-terminal">
           <div className="contact-row">
+            <span className="flag">--location</span> <span>{profile.location}</span>
+          </div>
+          <div className="contact-row">
             <span className="flag">--email</span>{" "}
             <a href={`mailto:${profile.email}`}>{profile.email}</a>
           </div>
